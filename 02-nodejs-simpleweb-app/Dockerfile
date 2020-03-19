@@ -1,7 +1,9 @@
 # Specify base image
 FROM node:alpine
 
-# Download and install a dependency
+WORKDIR /usr/app
+
+# Download and install a dependency into the workdir
 COPY ./ ./
 RUN npm install
 

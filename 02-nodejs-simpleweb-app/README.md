@@ -35,3 +35,5 @@ Now you can reach your app: http://localhost:5000/
         Dockerfile         index.js           package-lock.json
         README.md          node_modules       package.json
 
+5. Changing any file in the app without rebuilding the image again 
+won't reflect the change inside the container nor show it in the web page.

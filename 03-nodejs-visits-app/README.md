@@ -44,3 +44,21 @@ to stop a group of containers running in the background
 6. Simulate crashing with `process.exit(0)`, we run `docker-compose up --build` then we refresh the browser and
  get `03-nodejs-visits-app_node-app_1 exited with code 0` in the outputs.
  When we check running containers with `docker ps`, we see that the node container doesn't show up.
+ 
+7. Definition of restart policies:
+- "no": never attempt to restart this container if it stops or crashes
+- always: if this container stops **for any reason** awlays attempt to restart it
+- on-failure: only restart if the container stops with an **error code**
+- unless-stopped: always restart unless the developers forcibly stop it
+
+We add this change to the Dockerfile.
+
+8. to list running containers defined in docker-compose.yaml file, run the following in the same folder of the file:
+
+        $ docker-compose ps
+                    Name                           Command              State           Ports         
+        ----------------------------------------------------------------------------------------------
+        03-nodejs-visits-app_node-      docker-entrypoint.sh npm        Up      0.0.0.0:4001->8081/tcp
+        app_1                           start                                                         
+        03-nodejs-visits-app_redis-     docker-entrypoint.sh redis      Up      6379/tcp              
+        server_1                        ...                                                

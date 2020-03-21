@@ -3,6 +3,7 @@ services: # type of containers
   redis-server:
     image: 'redis' # use an image
   node-app:
+    restart: unless-stopped
     build: . # use a Dockerfile in the current dir
     ports:
       - "4001:8081"

@@ -50,3 +50,8 @@ Both runnning now and previously stopped
 Free up local machine from previously running contrainers
     
       docker system prune
+      
+Remove all local images:
+
+      docker rmi -f $(docker images -a -q)     
+ 

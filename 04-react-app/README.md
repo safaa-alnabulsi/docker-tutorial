@@ -81,3 +81,10 @@ Downside: getting the output of tests in the same logging interface of docker-co
            39 root      0:00 sh
            46 root      0:00 ps
 
+## Production
+
+We need `nginx` server for production enviroment to repsond for incoming browser request and respond them with web files.
+So, we will create a production version of our web container.
+
+    $ docker build . -t safaa1001/react-app-prod
+    $ docker run -it -p 8080:80 safaa1001/react-app-prod   

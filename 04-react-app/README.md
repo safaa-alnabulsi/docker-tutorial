@@ -32,3 +32,6 @@ The correct command is as following, we keep `node_modules` folder as it is insi
         docker run -di -p 3000:3000 -v /app/node_modules -v $(pwd):/app safaa1001/react-app
 
 ### Using docker-compose
+- start development container
+        
+        docker-compose up

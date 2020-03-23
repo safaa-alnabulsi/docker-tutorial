@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - cd 04-react-app/frontend
+  - cd 04-single-container-react-app/frontend
   - docker build -t safaa1001/react-app -f Dockerfile.dev .
 
 script:

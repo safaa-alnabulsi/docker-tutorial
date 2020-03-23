@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
   - docker
@@ -6,7 +7,7 @@ before_install:
   - docker build -t safaa1001/react-app -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true safaa1001/react-app npm run test
+  - docker run safaa1001/react-app npm run test -- --coverage
 
 deploy:
   edge: true

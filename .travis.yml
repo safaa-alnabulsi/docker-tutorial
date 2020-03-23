@@ -10,7 +10,6 @@ before_install:
   - docker build -t safaa1001/react-app -f Dockerfile.dev .
 
 script:
-  - cd 04-react-app/frontend
   - docker run -e CI=true safaa1001/react-app npm run test
 
 deploy:

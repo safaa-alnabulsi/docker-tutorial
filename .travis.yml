@@ -23,5 +23,4 @@ deploy:
   on:
     branch: "master"
   access_key_id: $AWS_ACCESS_KEY #local env in travis ci
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY" #local env in travis ci
+  secret_access_key: $AWS_SECRET_KEY #local env in travis ci

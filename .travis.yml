@@ -6,10 +6,12 @@ services:
   - docker
 
 before_install:
+  - cd 04-react-app/frontend
   - docker build -t safaa1001/react-app -f Dockerfile.dev .
 
 script:
-  - docker run safaa1001/react-app npm run test -- --coverage
+  - cd 04-react-app/frontend
+  - docker run -e CI=true safaa1001/react-app npm run test
 
 deploy:
   edge: true

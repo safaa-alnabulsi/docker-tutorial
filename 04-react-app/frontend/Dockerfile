@@ -1,10 +1,10 @@
 # Build phase
 FROM node:alpine as builder
 WORKDIR '/app'
-COPY package*.json yarn.lock ./
-RUN yarn
+COPY package*.json ./
+RUN npm install
 COPY . .
-RUN yarn build
+RUN npm run build
 
 # Run phase
 FROM nginx

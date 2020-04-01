@@ -15,7 +15,7 @@ services:
     volumes:
       - /app/node_modules
       - ./server:/app/server
-    environment:
+    environment: # those are setup once on runtime level and not on image level
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - PGUSER=postgres
@@ -31,4 +31,13 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - ./worker:/app/worker
+      - ./worker:/app
+  client:
+    stdin_open: true
+    tty: true
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./client:/app

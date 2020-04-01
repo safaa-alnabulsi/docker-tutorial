@@ -9,8 +9,25 @@ This backend of the app consists of:
 
 The goal of useless complexity here is to use more dependencies and simulate production enviroment. 
  
-## Development
+### Development
 
-## Tests
+
+    $ docker-compose up
+
+Check the containers:
+
+    $ docker ps
+    CONTAINER ID        IMAGE                                          COMMAND                  CREATED              STATUS              PORTS               NAMES
+    7a06fb66ecef        05-multi-container-fib-calculator-app_worker   "docker-entrypoint.s…"   About a minute ago   Up About a minute                       05-multi-container-fib-calculator-app_worker_1
+    d5838f3d6907        redis:latest                                   "docker-entrypoint.s…"   About a minute ago   Up About a minute   6379/tcp            05-multi-container-fib-calculator-app_redis-server_1
+    bb0d15f48128        05-multi-container-fib-calculator-app_server   "docker-entrypoint.s…"   About a minute ago   Up About a minute                       05-multi-container-fib-calculator-app_server_1
+    227fd7de9b07        postgres:latest                                "docker-entrypoint.s…"   About a minute ago   Up About a minute   5432/tcp            05-multi-container-fib-calculator-app_postgres_1
+
+### Tests
         
-## Production
+### Production
+
+## References
+
+- https://hub.docker.com/_/postgres
+- https://hub.docker.com/_/redis

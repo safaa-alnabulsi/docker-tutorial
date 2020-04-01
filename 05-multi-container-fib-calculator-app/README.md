@@ -13,17 +13,24 @@ The goal of useless complexity here is to use more dependencies and simulate pro
  
 ### Development
 
+    $ docker-compose up --build
 
-    $ docker-compose up
+Make sure to run this before rebuilding when changing the docker-comose.yaml:
 
+    $ docker-compose down
+    
 Check the containers:
 
     $ docker ps
-    CONTAINER ID        IMAGE                                          COMMAND                  CREATED              STATUS              PORTS               NAMES
-    7a06fb66ecef        05-multi-container-fib-calculator-app_worker   "docker-entrypoint.s…"   About a minute ago   Up About a minute                       05-multi-container-fib-calculator-app_worker_1
-    d5838f3d6907        redis:latest                                   "docker-entrypoint.s…"   About a minute ago   Up About a minute   6379/tcp            05-multi-container-fib-calculator-app_redis-server_1
-    bb0d15f48128        05-multi-container-fib-calculator-app_server   "docker-entrypoint.s…"   About a minute ago   Up About a minute                       05-multi-container-fib-calculator-app_server_1
-    227fd7de9b07        postgres:latest                                "docker-entrypoint.s…"   About a minute ago   Up About a minute   5432/tcp            05-multi-container-fib-calculator-app_postgres_1
+    CONTAINER ID        IMAGE                                          COMMAND                  CREATED              STATUS              PORTS                  NAMES
+    4d2c6da33607        05-multi-container-fib-calculator-app_nginx    "nginx -g 'daemon of…"   38 seconds ago       Up 37 seconds       0.0.0.0:3050->80/tcp   05-multi-container-fib-calculator-app_nginx_1
+    1d262e9e2cb4        05-multi-container-fib-calculator-app_api      "docker-entrypoint.s…"   58 seconds ago       Up 55 seconds                              05-multi-container-fib-calculator-app_api_1
+    db5efdaec644        postgres:latest                                "docker-entrypoint.s…"   About a minute ago   Up 58 seconds       5432/tcp               05-multi-container-fib-calculator-app_postgres_1
+    5f64187fa03d        redis:latest                                   "docker-entrypoint.s…"   About a minute ago   Up 58 seconds       6379/tcp               05-multi-container-fib-calculator-app_redis-server_1
+    ccc86b019181        05-multi-container-fib-calculator-app_worker   "docker-entrypoint.s…"   About a minute ago   Up 56 seconds                              05-multi-container-fib-calculator-app_worker_1
+    0e7d6a97c2a9        05-multi-container-fib-calculator-app_client   "docker-entrypoint.s…"   About a minute ago   Up 38 seconds                              05-multi-container-fib-calculator-app_client_1
+
+Play with the calculator in here: http://localhost:3050/
 
 ### Tests
         

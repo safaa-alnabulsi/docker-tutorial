@@ -10,6 +10,9 @@ services:
     restart: always
     stdin_open: true
     tty: true
+    depends_on:
+      - api
+      - client
     build:
       context: ./nginx
       dockerfile: Dockerfile.dev
@@ -21,6 +24,8 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile.dev
+    depends_on:
+      - postgres
     volumes:
       - /app/node_modules
       - ./server:/app/server
@@ -41,6 +46,9 @@ services:
     volumes:
       - /app/node_modules
       - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
   client:
     stdin_open: true
     tty: true

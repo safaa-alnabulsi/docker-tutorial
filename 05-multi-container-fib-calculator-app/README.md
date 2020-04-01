@@ -2,10 +2,12 @@
 
 A poc app which takes a number and calcualte its fibonacci number.
 This backend of the app consists of: 
- - React server 
- - Express server
+ - React server: default port is 3000
+ - Express server: default port is 5000
  - Redis: in-memory data store for saving key-value of calculated values.
  - Postgres db for storing values of previosuly submitted numbers.
+ - Nginx: it is more convenient than using ports to relay on nginx such that requests will be redirected
+  to express server if they have `/api`, otherwise nginx will redirect them to recat server.
 
 The goal of useless complexity here is to use more dependencies and simulate production enviroment. 
  
@@ -31,3 +33,4 @@ Check the containers:
 
 - https://hub.docker.com/_/postgres
 - https://hub.docker.com/_/redis
+- https://hub.docker.com/_/nginx

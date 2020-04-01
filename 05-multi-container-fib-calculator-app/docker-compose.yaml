@@ -6,6 +6,15 @@ services:
       - POSTGRES_PASSWORD=postgres_password
   redis-server:
     image: 'redis:latest'
+  nginx:
+    restart: always
+    stdin_open: true
+    tty: true
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports: #map local port
+      - '3050:80'
   api:
     stdin_open: true
     tty: true

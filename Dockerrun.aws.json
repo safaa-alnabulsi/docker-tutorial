@@ -1,0 +1,41 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "safaa1001/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "safaa1001/multi-servre",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "safaa1001/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "safaa1001/multi-nginx",
+      "hostname": "nginx",
+      // not required for nginx
+      // essential: true, means if this container crushes/goes down:
+      // all other containers will crush too
+      // and nobody will be able to access to this container
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          //default port that nginx listens to inside the container
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"] // link nginx to both containers
+    }
+  ]
+}

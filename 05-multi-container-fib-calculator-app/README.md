@@ -34,8 +34,46 @@ Play with the calculator in here: http://localhost:3050/
         
 ### Production
 
-After creating prod docker files, it will be all deployed to AWS with [.travis.yml](../.travis.yml.example-05)
+- After creating prod docker files, it will be all deployed to AWS with [.travis.yml](../.travis.yml.example-05)
 Make sure to add DOCKER_ID and DOCKER_PASSWORD to your travis pipeline configurations.
+
+- We will only put 4 continers inside EB (client, worker, server, nginx). The redis and postgres conatiners will be out of it.
+Redis will be on EC and postgres will be changed into RDS inside the account.
+ 
+- Make sure all the resources you will create are living inside one VPC in the same region.
+
+####  From AWS console (or cli)
+
+1. create a new Application with new Enviroment, Multi-docker as a platform.
+Note: make sure to configure the Network.
+
+2. create Aurora Postgres. 
+
+3. create Elastic cache with t2.micro type.
+
+4. create Security group to control access to EB, RDS (Postgres), EC(Redis) to enable them to communicate to each other.
+        
+       Protocol: Custom TCP 
+       Port Range: 5432-6379
+       Source: same name of this SG
+
+5. modify the EC(redis) security group section and add the lastly created SG from step 4.
+
+6. modify the RDS(postgres) security group section and add the lastly created SG from step 4.
+
+7. modify the EB  -> configurations -> instances -> security group section and add the lastly created SG from step 4.
+
+8. modify the EB  -> configurations -> software -> add enviroment variable:
+        
+        REDIS_HOST: get value from aws console EC, redis host in aws without the port
+        REDIS_PORT: get value from aws console EC, redis
+        
+        PGUSER: the user from step 2
+        PGPASSWORD the password from step 2
+        PGHOST: copy from aws console -> RDS
+        PGPORT: use default or copy from aws console -> RDS 
+        
+_Note_: in production, we use cloudformation to create all of the above.
 
 ## References
 

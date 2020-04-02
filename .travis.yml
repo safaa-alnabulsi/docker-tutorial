@@ -25,3 +25,16 @@ after_success:
   - docker push "$DOCKER_ID"/multi-nginx
   - docker push "$DOCKER_ID"/multi-server
   - docker push "$DOCKER_ID"/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-434405979992"
+  bucket_path: "multi-docker"
+  on:
+    branch: "master"
+  access_key_id: $AWS_ACCESS_KEY #local env in travis ci
+  secret_access_key: $AWS_SECRET_KEY #local env in travis ci

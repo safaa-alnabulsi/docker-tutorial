@@ -13,11 +13,10 @@ script:
   - docker run -e CI=true safaa1001/multi-docker-app npm run test
 
 after_success:
-  - cd 05-multi-container-fib-calculator-app
-  - docker build -t "$DOCKER_ID"/multi-client ./client
-  - docker build -t "$DOCKER_ID"/multi-nginx ./nginx
-  - docker build -t "$DOCKER_ID"/multi-server ./server
-  - docker build -t "$DOCKER_ID"/multi-worker ./worker
+  - docker build -t "$DOCKER_ID"/multi-client ./05-multi-container-fib-calculator-app/client
+  - docker build -t "$DOCKER_ID"/multi-nginx ./05-multi-container-fib-calculator-app/nginx
+  - docker build -t "$DOCKER_ID"/multi-server ./05-multi-container-fib-calculator-app/server
+  - docker build -t "$DOCKER_ID"/multi-worker ./05-multi-container-fib-calculator-app/worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-s
   # Take those images and push them to docker hub

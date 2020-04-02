@@ -88,3 +88,16 @@ So, we will create a production version of our web container.
 
     $ docker build . -t safaa1001/react-app-prod
     $ docker run -it -p 8080:80 safaa1001/react-app-prod   
+
+### AWS Keys in Travis
+
+1. Open up Travis dashboard and find your multi-docker app
+
+2. Click More Options, and select Settings
+
+3. Scroll to Environment Variables
+
+4. Add AWS_ACCESS_KEY and set to your AWS access key
+
+5. Add AWS_SECRET_KEY and set to your AWS secret key
+

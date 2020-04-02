@@ -8,6 +8,7 @@ services:
 before_install:
   - cd 05-multi-container-fib-calculator-app/client
   - docker build -t safaa1001/multi-docker-app -f Dockerfile.dev .
+  - cd ..
 
 script:
   - docker run -e CI=true safaa1001/multi-docker-app npm run test

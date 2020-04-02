@@ -13,10 +13,10 @@ script:
   - docker run -e CI=true safaa1001/multi-docker-app npm run test
 
 after_success:
-  - docker build -t "$DOCKER_ID"/multi-server /server
-  - docker build -t "$DOCKER_ID"/multi-worker /worker
-  - docker build -t "$DOCKER_ID"/multi-client /client
-  - docker build -t "$DOCKER_ID"/multi-nginx ./nginx
+  - docker build -t "$DOCKER_ID"/multi-server -f server/Dockerfile
+  - docker build -t "$DOCKER_ID"/multi-worker -f worker/Dockerfile
+  - docker build -t "$DOCKER_ID"/multi-client -f client/Dockerfile
+  - docker build -t "$DOCKER_ID"/multi-nginx  -f nginx/Dockerfile
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-s
   # Take those images and push them to docker hub

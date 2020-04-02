@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - 8
+sudo: required
+services:
+  - docker
+
+before_install:
+  - cd 05-multi-container-fib-calculator-app/client
+  - docker build -t safaa1001/multi-docker-app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true safaa1001/multi-docker-app npm run test
+
+after_success:
+  - cd 05-multi-container-fib-calculator-app
+  - docker build -t "$DOCKER_ID"/multi-client ./client
+  - docker build -t "$DOCKER_ID"/multi-nginx ./nginx
+  - docker build -t "$DOCKER_ID"/multi-server ./server
+  - docker build -t "$DOCKER_ID"/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-s
+  # Take those images and push them to docker hub
+  - docker push "$DOCKER_ID"/multi-client
+  - docker push "$DOCKER_ID"/multi-nginx
+  - docker push "$DOCKER_ID"/multi-server
+  - docker push "$DOCKER_ID"/multi-worker

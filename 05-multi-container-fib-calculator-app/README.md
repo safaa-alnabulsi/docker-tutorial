@@ -31,10 +31,11 @@ Check the containers:
     0e7d6a97c2a9        05-multi-container-fib-calculator-app_client   "docker-entrypoint.s…"   About a minute ago   Up 38 seconds                              05-multi-container-fib-calculator-app_client_1
 
 Play with the calculator in here: http://localhost:3050/
-
-### Tests
         
 ### Production
+
+After creating prod docker files, it will be all deployed to AWS with [.travis.yml](../.travis.yml.example-05)
+Make sure to add DOCKER_ID and DOCKER_PASSWORD to your travis pipeline configurations.
 
 ## References
 

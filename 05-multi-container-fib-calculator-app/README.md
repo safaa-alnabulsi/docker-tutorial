@@ -72,7 +72,9 @@ Note: make sure to configure the Network.
         PGPASSWORD the password from step 2
         PGHOST: copy from aws console -> RDS
         PGPORT: use default or copy from aws console -> RDS 
-        
+
+After each commit, travis pipeline will deploy the app.
+     
 _Note_: in production, we use cloudformation to create all of the above.
 
 _Note_:
@@ -80,6 +82,7 @@ _Note_:
 - essential: true
 it means if this container crushes/goes down all other containers will crush too and nobody will be able to access to this container
 
+Finally, CLEAN UP! delete all resources manaually from AWS
 ## References
 
 - https://hub.docker.com/_/postgres
